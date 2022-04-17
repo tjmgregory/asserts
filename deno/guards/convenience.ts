@@ -1,34 +1,65 @@
-import { isNumber, isString } from './primitives.ts';
-import { isArray } from './structural.ts';
-
-export const isObjectOrNull = <T extends object, U>(term: T | U): term is T => {
-  return typeof term === 'object';
+export const isObjectOrNull = <T extends object, U>(
+  term: T | U,
+): asserts term is T => {
+  if (typeof term !== 'object') {
+    throw new TypeError();
+  }
 };
 
-export const isNonEmptyArray = <T, U>(term: Array<T> | U): term is Array<T> => {
-  return isArray(term) && term.length > 0;
+export const isNonEmptyArray = <T, U>(
+  term: Array<T> | U,
+): asserts term is Array<T> => {
+  if (!Array.isArray(term) || term.length === 0) {
+    throw new TypeError();
+  }
 };
 
-export const isNonEmptyString = <U>(term: string | U): term is string => {
-  return isString(term) && term.length > 0;
+export const isNonEmptyString = <U>(
+  term: string | U,
+): asserts term is string => {
+  if (typeof term !== 'string' || term.length == 0) {
+    throw new TypeError();
+  }
 };
 
-export const isNumberOrNaN = <U>(term: number | U): term is number => {
-  return typeof term === 'number';
+export const isNumberOrNaN = <U>(term: number | U): asserts term is number => {
+  if (typeof term !== 'number') {
+    throw new TypeError();
+  }
 };
 
-export const isInteger = <U>(term: number | U): term is number => {
-  return isNumber(term) && Number.isInteger(term);
+const _isInteger = <U>(term: number | U): term is number => {
+  return (
+    typeof term === 'number' && !Number.isNaN(term) && Number.isInteger(term)
+  );
 };
 
-export const isPositiveInteger = <U>(term: number | U): term is number => {
-  return isInteger(term) && term > 0;
+export const isInteger = <U>(term: number | U): asserts term is number => {
+  if (!_isInteger(term)) {
+    throw new TypeError();
+  }
 };
 
-export const isNonNegativeInteger = <U>(term: number | U): term is number => {
-  return isInteger(term) && term >= 0;
+export const isPositiveInteger = <U>(
+  term: number | U,
+): asserts term is number => {
+  if (!_isInteger(term) || term <= 0) {
+    throw new TypeError();
+  }
 };
 
-export const isNegativeInteger = <U>(term: number | U): term is number => {
-  return isInteger(term) && term < 0;
+export const isNonNegativeInteger = <U>(
+  term: number | U,
+): asserts term is number => {
+  if (!_isInteger(term) || term < 0) {
+    throw new TypeError();
+  }
+};
+
+export const isNegativeInteger = <U>(
+  term: number | U,
+): asserts term is number => {
+  if (!_isInteger(term) || term >= 0) {
+    throw new TypeError();
+  }
 };
