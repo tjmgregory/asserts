@@ -1,6 +1,6 @@
 {
   "name": "@tjmgregory/asserts",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Comprehensive collection of type asserts for JavaScript and TypeScript; Inspired by Elixir",
   "main": "build/index.js",
   "types": "build",

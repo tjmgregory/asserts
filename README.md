@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/tjmgregory/asserts">
+  <a href="https://www.npmjs.com/package/@tjmgregory/asserts">
     <img src=".github/assets/asserts-social-cover.svg" alt="Asserts Logo" />
   </a>
 </p>
