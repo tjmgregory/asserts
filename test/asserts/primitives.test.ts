@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import * as primitives from '../../lib/guards/primitives';
+import * as primitives from '../../lib/asserts/primitives';
 
 const getUndefined = () => {
   return undefined;

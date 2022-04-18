@@ -17,7 +17,7 @@ export const isNonEmptyArray = <T, U>(
 export const isNonEmptyString = <U>(
   term: string | U,
 ): asserts term is string => {
-  if (typeof term !== 'string' || term.length == 0) {
+  if (typeof term !== 'string' || term.length === 0) {
     throw new TypeError();
   }
 };

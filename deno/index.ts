@@ -1,6 +1,6 @@
-export * as convenience from './guards/convenience.ts';
-export * from './guards/convenience.ts';
-export * as primitives from './guards/primitives.ts';
-export * from './guards/primitives.ts';
-export * as structural from './guards/structural.ts';
-export * from './guards/structural.ts';
+export * as convenience from './asserts/convenience.ts';
+export * from './asserts/convenience.ts';
+export * as primitives from './asserts/primitives.ts';
+export * from './asserts/primitives.ts';
+export * as structural from './asserts/structural.ts';
+export * from './asserts/structural.ts';

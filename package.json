@@ -1,7 +1,7 @@
 {
-  "name": "@sniptt/guards",
-  "version": "0.2.0",
-  "description": "Comprehensive collection of type guards for JavaScript and TypeScript; Inspired by Elixir",
+  "name": "@tjmgregory/asserts",
+  "version": "0.1.0",
+  "description": "Comprehensive collection of type asserts for JavaScript and TypeScript; Inspired by Elixir",
   "main": "build/index.js",
   "types": "build",
   "engines": {
@@ -12,17 +12,17 @@
     "build"
   ],
   "keywords": [
-    "guards",
+    "asserts",
     "javascript",
     "js",
     "typescript",
     "node",
     "node.js"
   ],
-  "author": "Sniptt <support@sniptt.com> (sniptt.com)",
+  "author": "Theo Gregory @tjmgregory & Sniptt <support@sniptt.com> (sniptt.com)",
   "license": "MIT",
-  "homepage": "https://github.com/sniptt-official/guards",
-  "bugs": "https://github.com/sniptt-official/guards/issues",
+  "homepage": "https://github.com/sniptt-official/asserts",
+  "bugs": "https://github.com/sniptt-official/asserts/issues",
   "scripts": {
     "build": "rm -rf build deno && tsc && denoify && mv deno_build deno && npm run format",
     "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",

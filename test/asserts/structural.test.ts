@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import * as structural from '../../lib/guards/structural';
+import * as structural from '../../lib/asserts/structural';
 
 test('isNull', (t) => {
   t.notThrows(() => structural.isNull(null));

@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import * as convenience from '../../lib/guards/convenience';
+import * as convenience from '../../lib/asserts/convenience';
 
 test('isObjectOrNull', (t) => {
   t.notThrows(() => convenience.isObjectOrNull({}));

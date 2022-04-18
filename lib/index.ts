@@ -1,6 +1,6 @@
-export * as convenience from './guards/convenience';
-export * from './guards/convenience';
-export * as primitives from './guards/primitives';
-export * from './guards/primitives';
-export * as structural from './guards/structural';
-export * from './guards/structural';
+export * as convenience from './asserts/convenience';
+export * from './asserts/convenience';
+export * as primitives from './asserts/primitives';
+export * from './asserts/primitives';
+export * as structural from './asserts/structural';
+export * from './asserts/structural';
