@@ -35,55 +35,55 @@ const getSymbol = () => {
 };
 
 test('isUndefined', (t) => {
-  t.is(primitives.isUndefined(getUndefined()), true);
-  t.is(primitives.isUndefined(getBoolean()), false);
-  t.is(primitives.isUndefined(getNumber()), false);
-  t.is(primitives.isUndefined(getString()), false);
-  t.is(primitives.isUndefined(getBigInt()), false);
-  t.is(primitives.isUndefined(getSymbol()), false);
+  t.notThrows(() => primitives.isUndefined(getUndefined()));
+  t.throws(() => primitives.isUndefined(getBoolean()));
+  t.throws(() => primitives.isUndefined(getNumber()));
+  t.throws(() => primitives.isUndefined(getString()));
+  t.throws(() => primitives.isUndefined(getBigInt()));
+  t.throws(() => primitives.isUndefined(getSymbol()));
 });
 
 test('isBoolean', (t) => {
-  t.is(primitives.isBoolean(getUndefined()), false);
-  t.is(primitives.isBoolean(getBoolean()), true);
-  t.is(primitives.isBoolean(getNumber()), false);
-  t.is(primitives.isBoolean(getString()), false);
-  t.is(primitives.isBoolean(getBigInt()), false);
-  t.is(primitives.isBoolean(getSymbol()), false);
+  t.throws(() => primitives.isBoolean(getUndefined()));
+  t.notThrows(() => primitives.isBoolean(getBoolean()));
+  t.throws(() => primitives.isBoolean(getNumber()));
+  t.throws(() => primitives.isBoolean(getString()));
+  t.throws(() => primitives.isBoolean(getBigInt()));
+  t.throws(() => primitives.isBoolean(getSymbol()));
 });
 
 test('isNumber', (t) => {
-  t.is(primitives.isNumber(getUndefined()), false);
-  t.is(primitives.isNumber(getBoolean()), false);
-  t.is(primitives.isNumber(getNumber()), true);
-  t.is(primitives.isNumber(getString()), false);
-  t.is(primitives.isNumber(getBigInt()), false);
-  t.is(primitives.isNumber(getSymbol()), false);
+  t.throws(() => primitives.isNumber(getUndefined()));
+  t.throws(() => primitives.isNumber(getBoolean()));
+  t.notThrows(() => primitives.isNumber(getNumber()));
+  t.throws(() => primitives.isNumber(getString()));
+  t.throws(() => primitives.isNumber(getBigInt()));
+  t.throws(() => primitives.isNumber(getSymbol()));
 });
 
 test('isString', (t) => {
-  t.is(primitives.isString(getUndefined()), false);
-  t.is(primitives.isString(getBoolean()), false);
-  t.is(primitives.isString(getNumber()), false);
-  t.is(primitives.isString(getString()), true);
-  t.is(primitives.isString(getBigInt()), false);
-  t.is(primitives.isString(getSymbol()), false);
+  t.throws(() => primitives.isString(getUndefined()));
+  t.throws(() => primitives.isString(getBoolean()));
+  t.throws(() => primitives.isString(getNumber()));
+  t.notThrows(() => primitives.isString(getString()));
+  t.throws(() => primitives.isString(getBigInt()));
+  t.throws(() => primitives.isString(getSymbol()));
 });
 
 test('isBigInt', (t) => {
-  t.is(primitives.isBigInt(getUndefined()), false);
-  t.is(primitives.isBigInt(getBoolean()), false);
-  t.is(primitives.isBigInt(getNumber()), false);
-  t.is(primitives.isBigInt(getString()), false);
-  t.is(primitives.isBigInt(getBigInt()), true);
-  t.is(primitives.isBigInt(getSymbol()), false);
+  t.throws(() => primitives.isBigInt(getUndefined()));
+  t.throws(() => primitives.isBigInt(getBoolean()));
+  t.throws(() => primitives.isBigInt(getNumber()));
+  t.throws(() => primitives.isBigInt(getString()));
+  t.notThrows(() => primitives.isBigInt(getBigInt()));
+  t.throws(() => primitives.isBigInt(getSymbol()));
 });
 
 test('isSymbol', (t) => {
-  t.is(primitives.isSymbol(getUndefined()), false);
-  t.is(primitives.isSymbol(getBoolean()), false);
-  t.is(primitives.isSymbol(getNumber()), false);
-  t.is(primitives.isSymbol(getString()), false);
-  t.is(primitives.isSymbol(getBigInt()), false);
-  t.is(primitives.isSymbol(getSymbol()), true);
+  t.throws(() => primitives.isSymbol(getUndefined()));
+  t.throws(() => primitives.isSymbol(getBoolean()));
+  t.throws(() => primitives.isSymbol(getNumber()));
+  t.throws(() => primitives.isSymbol(getString()));
+  t.throws(() => primitives.isSymbol(getBigInt()));
+  t.notThrows(() => primitives.isSymbol(getSymbol()));
 });

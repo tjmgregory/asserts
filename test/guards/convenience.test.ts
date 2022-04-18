@@ -3,89 +3,86 @@ import test from 'ava';
 import * as convenience from '../../lib/guards/convenience';
 
 test('isObjectOrNull', (t) => {
-  t.is(convenience.isObjectOrNull({}), true);
-  t.is(convenience.isObjectOrNull(null), true);
-  t.is(convenience.isObjectOrNull(new Set()), true);
-  t.is(
-    convenience.isObjectOrNull(() => {}),
-    false,
-  );
-  t.is(convenience.isObjectOrNull(new Function()), false);
+  t.notThrows(() => convenience.isObjectOrNull({}));
+  t.notThrows(() => convenience.isObjectOrNull(null));
+  t.notThrows(() => convenience.isObjectOrNull(new Set()));
+  t.throws(() => convenience.isObjectOrNull(() => {}));
+  t.throws(() => convenience.isObjectOrNull(new Function()));
 });
 
 test('isNonEmptyArray', (t) => {
-  t.is(convenience.isNonEmptyArray([1, 2]), true);
-  t.is(convenience.isNonEmptyArray([1]), true);
-  t.is(convenience.isNonEmptyArray([]), false);
+  t.notThrows(() => convenience.isNonEmptyArray([1, 2]));
+  t.notThrows(() => convenience.isNonEmptyArray([1]));
+  t.throws(() => convenience.isNonEmptyArray([]));
 });
 
 test('isNonEmptyString', (t) => {
-  t.is(convenience.isNonEmptyString('a'), true);
-  t.is(convenience.isNonEmptyString(''), false);
+  t.notThrows(() => convenience.isNonEmptyString('a'));
+  t.throws(() => convenience.isNonEmptyString(''));
 });
 
 test('isNumberOrNaN', (t) => {
-  t.is(convenience.isNumberOrNaN(0), true);
-  t.is(convenience.isNumberOrNaN(42), true);
-  t.is(convenience.isNumberOrNaN(-42), true);
-  t.is(convenience.isNumberOrNaN(3.14), true);
-  t.is(convenience.isNumberOrNaN(-3.14), true);
-  t.is(convenience.isNumberOrNaN(Infinity), true);
-  t.is(convenience.isNumberOrNaN(-Infinity), true);
-  t.is(convenience.isNumberOrNaN(Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isNumberOrNaN(-Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isNumberOrNaN(NaN), true);
-  t.is(convenience.isNumberOrNaN(BigInt(0)), false);
+  t.notThrows(() => convenience.isNumberOrNaN(0));
+  t.notThrows(() => convenience.isNumberOrNaN(42));
+  t.notThrows(() => convenience.isNumberOrNaN(-42));
+  t.notThrows(() => convenience.isNumberOrNaN(3.14));
+  t.notThrows(() => convenience.isNumberOrNaN(-3.14));
+  t.notThrows(() => convenience.isNumberOrNaN(Infinity));
+  t.notThrows(() => convenience.isNumberOrNaN(-Infinity));
+  t.notThrows(() => convenience.isNumberOrNaN(Number.MAX_SAFE_INTEGER));
+  t.notThrows(() => convenience.isNumberOrNaN(-Number.MAX_SAFE_INTEGER));
+  t.notThrows(() => convenience.isNumberOrNaN(NaN));
+  t.throws(() => convenience.isNumberOrNaN(BigInt(0)));
 });
 
 test('isInteger', (t) => {
-  t.is(convenience.isInteger(0), true);
-  t.is(convenience.isInteger(42), true);
-  t.is(convenience.isInteger(-42), true);
-  t.is(convenience.isInteger(3.14), false);
-  t.is(convenience.isInteger(-3.14), false);
-  t.is(convenience.isInteger(Infinity), false);
-  t.is(convenience.isInteger(-Infinity), false);
-  t.is(convenience.isInteger(Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isInteger(-Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isInteger(NaN), false);
+  t.notThrows(() => convenience.isInteger(0));
+  t.notThrows(() => convenience.isInteger(42));
+  t.notThrows(() => convenience.isInteger(-42));
+  t.throws(() => convenience.isInteger(3.14));
+  t.throws(() => convenience.isInteger(-3.14));
+  t.throws(() => convenience.isInteger(Infinity));
+  t.throws(() => convenience.isInteger(-Infinity));
+  t.notThrows(() => convenience.isInteger(Number.MAX_SAFE_INTEGER));
+  t.notThrows(() => convenience.isInteger(-Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isInteger(NaN));
 });
 
 test('isPositiveInteger', (t) => {
-  t.is(convenience.isPositiveInteger(0), false);
-  t.is(convenience.isPositiveInteger(42), true);
-  t.is(convenience.isPositiveInteger(-42), false);
-  t.is(convenience.isPositiveInteger(3.14), false);
-  t.is(convenience.isPositiveInteger(-3.14), false);
-  t.is(convenience.isPositiveInteger(Infinity), false);
-  t.is(convenience.isPositiveInteger(-Infinity), false);
-  t.is(convenience.isPositiveInteger(Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isPositiveInteger(-Number.MAX_SAFE_INTEGER), false);
-  t.is(convenience.isPositiveInteger(NaN), false);
+  t.throws(() => convenience.isPositiveInteger(0));
+  t.notThrows(() => convenience.isPositiveInteger(42));
+  t.throws(() => convenience.isPositiveInteger(-42));
+  t.throws(() => convenience.isPositiveInteger(3.14));
+  t.throws(() => convenience.isPositiveInteger(-3.14));
+  t.throws(() => convenience.isPositiveInteger(Infinity));
+  t.throws(() => convenience.isPositiveInteger(-Infinity));
+  t.notThrows(() => convenience.isPositiveInteger(Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isPositiveInteger(-Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isPositiveInteger(NaN));
 });
 
 test('isNonNegativeInteger', (t) => {
-  t.is(convenience.isNonNegativeInteger(0), true);
-  t.is(convenience.isNonNegativeInteger(42), true);
-  t.is(convenience.isNonNegativeInteger(-42), false);
-  t.is(convenience.isNonNegativeInteger(3.14), false);
-  t.is(convenience.isNonNegativeInteger(-3.14), false);
-  t.is(convenience.isNonNegativeInteger(Infinity), false);
-  t.is(convenience.isNonNegativeInteger(-Infinity), false);
-  t.is(convenience.isNonNegativeInteger(Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isNonNegativeInteger(-Number.MAX_SAFE_INTEGER), false);
-  t.is(convenience.isNonNegativeInteger(NaN), false);
+  t.notThrows(() => convenience.isNonNegativeInteger(0));
+  t.notThrows(() => convenience.isNonNegativeInteger(42));
+  t.throws(() => convenience.isNonNegativeInteger(-42));
+  t.throws(() => convenience.isNonNegativeInteger(3.14));
+  t.throws(() => convenience.isNonNegativeInteger(-3.14));
+  t.throws(() => convenience.isNonNegativeInteger(Infinity));
+  t.throws(() => convenience.isNonNegativeInteger(-Infinity));
+  t.notThrows(() => convenience.isNonNegativeInteger(Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isNonNegativeInteger(-Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isNonNegativeInteger(NaN));
 });
 
 test('isNegativeInteger', (t) => {
-  t.is(convenience.isNegativeInteger(0), false);
-  t.is(convenience.isNegativeInteger(42), false);
-  t.is(convenience.isNegativeInteger(-42), true);
-  t.is(convenience.isNegativeInteger(3.14), false);
-  t.is(convenience.isNegativeInteger(-3.14), false);
-  t.is(convenience.isNegativeInteger(Infinity), false);
-  t.is(convenience.isNegativeInteger(-Infinity), false);
-  t.is(convenience.isNegativeInteger(Number.MAX_SAFE_INTEGER), false);
-  t.is(convenience.isNegativeInteger(-Number.MAX_SAFE_INTEGER), true);
-  t.is(convenience.isNegativeInteger(NaN), false);
+  t.throws(() => convenience.isNegativeInteger(0));
+  t.throws(() => convenience.isNegativeInteger(42));
+  t.notThrows(() => convenience.isNegativeInteger(-42));
+  t.throws(() => convenience.isNegativeInteger(3.14));
+  t.throws(() => convenience.isNegativeInteger(-3.14));
+  t.throws(() => convenience.isNegativeInteger(Infinity));
+  t.throws(() => convenience.isNegativeInteger(-Infinity));
+  t.throws(() => convenience.isNegativeInteger(Number.MAX_SAFE_INTEGER));
+  t.notThrows(() => convenience.isNegativeInteger(-Number.MAX_SAFE_INTEGER));
+  t.throws(() => convenience.isNegativeInteger(NaN));
 });

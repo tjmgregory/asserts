@@ -3,217 +3,169 @@ import test from 'ava';
 import * as structural from '../../lib/guards/structural';
 
 test('isNull', (t) => {
-  t.is(structural.isNull(null), true);
-  t.is(structural.isNull(undefined), false);
-  t.is(structural.isNull(0), false);
-  t.is(structural.isNull(false), false);
+  t.notThrows(() => structural.isNull(null));
+  t.throws(() => structural.isNull(undefined));
+  t.throws(() => structural.isNull(0));
+  t.throws(() => structural.isNull(false));
 });
 
 test('isFunction', (t) => {
-  t.is(structural.isFunction({}), false);
-  t.is(structural.isFunction(new (class C {})()), false);
-  t.is(structural.isFunction(new Function()), true);
-  t.is(structural.isFunction(new Map()), false);
-  t.is(structural.isFunction(new Set()), false);
-  t.is(structural.isFunction(new WeakMap()), false);
-  t.is(structural.isFunction(new WeakSet()), false);
-  t.is(structural.isFunction(new Date()), false);
-  t.is(
-    structural.isFunction(() => {}),
-    true,
-  );
-  t.is(
-    structural.isFunction(function () {}),
-    true,
-  );
-  t.is(structural.isFunction(class C {}), true);
-  t.is(structural.isFunction(parseInt), true);
-  t.is(structural.isFunction(null), false);
-  t.is(structural.isFunction(undefined), false);
-  t.is(structural.isFunction('str'), false);
-  t.is(structural.isFunction(42), false);
-  t.is(structural.isFunction([]), false);
-  t.is(structural.isFunction(Symbol('symbol')), false);
+  t.throws(() => structural.isFunction({}));
+  t.throws(() => structural.isFunction(new (class C {})()));
+  t.notThrows(() => structural.isFunction(new Function()));
+  t.throws(() => structural.isFunction(new Map()));
+  t.throws(() => structural.isFunction(new Set()));
+  t.throws(() => structural.isFunction(new WeakMap()));
+  t.throws(() => structural.isFunction(new WeakSet()));
+  t.throws(() => structural.isFunction(new Date()));
+  t.notThrows(() => structural.isFunction(() => {}));
+  t.notThrows(() => structural.isFunction(function () {}));
+  t.notThrows(() => structural.isFunction(class C {}));
+  t.notThrows(() => structural.isFunction(parseInt));
+  t.throws(() => structural.isFunction(null));
+  t.throws(() => structural.isFunction(undefined));
+  t.throws(() => structural.isFunction('str'));
+  t.throws(() => structural.isFunction(42));
+  t.throws(() => structural.isFunction([]));
+  t.throws(() => structural.isFunction(Symbol('symbol')));
 });
 
 test('isObject', (t) => {
-  t.is(structural.isObject({}), true);
-  t.is(structural.isObject(new (class C {})()), true);
-  t.is(structural.isObject(new Function()), false);
-  t.is(structural.isObject(new Map()), true);
-  t.is(structural.isObject(new Set()), true);
-  t.is(structural.isObject(new WeakMap()), true);
-  t.is(structural.isObject(new WeakSet()), true);
-  t.is(structural.isObject(new Date()), true);
-  t.is(
-    structural.isObject(() => {}),
-    false,
-  );
-  t.is(
-    structural.isObject(function () {}),
-    false,
-  );
-  t.is(structural.isObject(class C {}), false);
-  t.is(structural.isObject(parseInt), false);
-  t.is(structural.isObject(null), false);
-  t.is(structural.isObject(undefined), false);
-  t.is(structural.isObject('str'), false);
-  t.is(structural.isObject(42), false);
-  t.is(structural.isObject([]), true);
-  t.is(structural.isObject(Symbol('symbol')), false);
+  t.notThrows(() => structural.isObject({}));
+  t.notThrows(() => structural.isObject(new (class C {})()));
+  t.throws(() => structural.isObject(new Function()));
+  t.notThrows(() => structural.isObject(new Map()));
+  t.notThrows(() => structural.isObject(new Set()));
+  t.notThrows(() => structural.isObject(new WeakMap()));
+  t.notThrows(() => structural.isObject(new WeakSet()));
+  t.notThrows(() => structural.isObject(new Date()));
+  t.throws(() => structural.isObject(() => {}));
+  t.throws(() => structural.isObject(function () {}));
+  t.throws(() => structural.isObject(class C {}));
+  t.throws(() => structural.isObject(parseInt));
+  t.throws(() => structural.isObject(null));
+  t.throws(() => structural.isObject(undefined));
+  t.throws(() => structural.isObject('str'));
+  t.throws(() => structural.isObject(42));
+  t.notThrows(() => structural.isObject([]));
+  t.throws(() => structural.isObject(Symbol('symbol')));
 });
 
 test('isArray', (t) => {
-  t.is(structural.isArray([]), true);
-  t.is(structural.isArray(class C {}), false);
-  t.is(structural.isArray(new Map()), false);
-  t.is(structural.isArray(new Set()), false);
-  t.is(structural.isArray(new WeakMap()), false);
-  t.is(structural.isArray(new WeakSet()), false);
-  t.is(structural.isArray(new Date()), false);
-  t.is(
-    structural.isArray(() => {}),
-    false,
-  );
-  t.is(
-    structural.isArray(function () {}),
-    false,
-  );
-  t.is(structural.isArray(class C {}), false);
-  t.is(structural.isArray(parseInt), false);
-  t.is(structural.isArray(null), false);
-  t.is(structural.isArray(undefined), false);
-  t.is(structural.isArray('str'), false);
-  t.is(structural.isArray(42), false);
-  t.is(structural.isArray(Symbol('symbol')), false);
+  t.notThrows(() => structural.isArray([]));
+  t.throws(() => structural.isArray(class C {}));
+  t.throws(() => structural.isArray(new Map()));
+  t.throws(() => structural.isArray(new Set()));
+  t.throws(() => structural.isArray(new WeakMap()));
+  t.throws(() => structural.isArray(new WeakSet()));
+  t.throws(() => structural.isArray(new Date()));
+  t.throws(() => structural.isArray(() => {}));
+  t.throws(() => structural.isArray(function () {}));
+  t.throws(() => structural.isArray(class C {}));
+  t.throws(() => structural.isArray(parseInt));
+  t.throws(() => structural.isArray(null));
+  t.throws(() => structural.isArray(undefined));
+  t.throws(() => structural.isArray('str'));
+  t.throws(() => structural.isArray(42));
+  t.throws(() => structural.isArray(Symbol('symbol')));
 });
 
 test('isMap', (t) => {
-  t.is(structural.isMap({}), false);
-  t.is(structural.isMap(new (class C {})()), false);
-  t.is(structural.isMap(new Map()), true);
-  t.is(structural.isMap(new Set()), false);
-  t.is(structural.isMap(new WeakMap()), false);
-  t.is(structural.isMap(new WeakSet()), false);
-  t.is(structural.isMap(new Date()), false);
-  t.is(
-    structural.isMap(() => {}),
-    false,
-  );
-  t.is(
-    structural.isMap(function () {}),
-    false,
-  );
-  t.is(structural.isMap(class C {}), false);
-  t.is(structural.isMap(parseInt), false);
-  t.is(structural.isMap(null), false);
-  t.is(structural.isMap(undefined), false);
-  t.is(structural.isMap('str'), false);
-  t.is(structural.isMap(42), false);
-  t.is(structural.isMap([]), false);
-  t.is(structural.isMap(Symbol('symbol')), false);
+  t.throws(() => structural.isMap({}));
+  t.throws(() => structural.isMap(new (class C {})()));
+  t.notThrows(() => structural.isMap(new Map()));
+  t.throws(() => structural.isMap(new Set()));
+  t.throws(() => structural.isMap(new WeakMap()));
+  t.throws(() => structural.isMap(new WeakSet()));
+  t.throws(() => structural.isMap(new Date()));
+  t.throws(() => structural.isMap(() => {}));
+  t.throws(() => structural.isMap(function () {}));
+  t.throws(() => structural.isMap(class C {}));
+  t.throws(() => structural.isMap(parseInt));
+  t.throws(() => structural.isMap(null));
+  t.throws(() => structural.isMap(undefined));
+  t.throws(() => structural.isMap('str'));
+  t.throws(() => structural.isMap(42));
+  t.throws(() => structural.isMap([]));
+  t.throws(() => structural.isMap(Symbol('symbol')));
 });
 
 test('isSet', (t) => {
-  t.is(structural.isSet({}), false);
-  t.is(structural.isSet(new (class C {})()), false);
-  t.is(structural.isSet(new Map()), false);
-  t.is(structural.isSet(new Set()), true);
-  t.is(structural.isSet(new WeakMap()), false);
-  t.is(structural.isSet(new WeakSet()), false);
-  t.is(structural.isSet(new Date()), false);
-  t.is(
-    structural.isSet(() => {}),
-    false,
-  );
-  t.is(
-    structural.isSet(function () {}),
-    false,
-  );
-  t.is(structural.isSet(class C {}), false);
-  t.is(structural.isSet(parseInt), false);
-  t.is(structural.isSet(null), false);
-  t.is(structural.isSet(undefined), false);
-  t.is(structural.isSet('str'), false);
-  t.is(structural.isSet(42), false);
-  t.is(structural.isSet([]), false);
-  t.is(structural.isSet(Symbol('symbol')), false);
+  t.throws(() => structural.isSet({}));
+  t.throws(() => structural.isSet(new (class C {})()));
+  t.throws(() => structural.isSet(new Map()));
+  t.notThrows(() => structural.isSet(new Set()));
+  t.throws(() => structural.isSet(new WeakMap()));
+  t.throws(() => structural.isSet(new WeakSet()));
+  t.throws(() => structural.isSet(new Date()));
+  t.throws(() => structural.isSet(() => {}));
+  t.throws(() => structural.isSet(function () {}));
+  t.throws(() => structural.isSet(class C {}));
+  t.throws(() => structural.isSet(parseInt));
+  t.throws(() => structural.isSet(null));
+  t.throws(() => structural.isSet(undefined));
+  t.throws(() => structural.isSet('str'));
+  t.throws(() => structural.isSet(42));
+  t.throws(() => structural.isSet([]));
+  t.throws(() => structural.isSet(Symbol('symbol')));
 });
 
 test('isWeakMap', (t) => {
-  t.is(structural.isWeakMap({}), false);
-  t.is(structural.isWeakMap(new (class C {})()), false);
-  t.is(structural.isWeakMap(new Map()), false);
-  t.is(structural.isWeakMap(new Set()), false);
-  t.is(structural.isWeakMap(new WeakMap()), true);
-  t.is(structural.isWeakMap(new WeakSet()), false);
-  t.is(structural.isWeakMap(new Date()), false);
-  t.is(
-    structural.isWeakMap(() => {}),
-    false,
-  );
-  t.is(
-    structural.isWeakMap(function () {}),
-    false,
-  );
-  t.is(structural.isWeakMap(class C {}), false);
-  t.is(structural.isWeakMap(parseInt), false);
-  t.is(structural.isWeakMap(null), false);
-  t.is(structural.isWeakMap(undefined), false);
-  t.is(structural.isWeakMap('str'), false);
-  t.is(structural.isWeakMap(42), false);
-  t.is(structural.isWeakMap([]), false);
-  t.is(structural.isWeakMap(Symbol('symbol')), false);
+  t.throws(() => structural.isWeakMap({}));
+  t.throws(() => structural.isWeakMap(new (class C {})()));
+  t.throws(() => structural.isWeakMap(new Map()));
+  t.throws(() => structural.isWeakMap(new Set()));
+  t.notThrows(() => structural.isWeakMap(new WeakMap()));
+  t.throws(() => structural.isWeakMap(new WeakSet()));
+  t.throws(() => structural.isWeakMap(new Date()));
+  t.throws(() => structural.isWeakMap(() => {}));
+  t.throws(() => structural.isWeakMap(function () {}));
+  t.throws(() => structural.isWeakMap(class C {}));
+  t.throws(() => structural.isWeakMap(parseInt));
+  t.throws(() => structural.isWeakMap(null));
+  t.throws(() => structural.isWeakMap(undefined));
+  t.throws(() => structural.isWeakMap('str'));
+  t.throws(() => structural.isWeakMap(42));
+  t.throws(() => structural.isWeakMap([]));
+  t.throws(() => structural.isWeakMap(Symbol('symbol')));
 });
 
 test('isWeakSet', (t) => {
-  t.is(structural.isWeakSet({}), false);
-  t.is(structural.isWeakSet(new (class C {})()), false);
-  t.is(structural.isWeakSet(new Map()), false);
-  t.is(structural.isWeakSet(new Set()), false);
-  t.is(structural.isWeakSet(new WeakMap()), false);
-  t.is(structural.isWeakSet(new WeakSet()), true);
-  t.is(structural.isWeakSet(new Date()), false);
-  t.is(
-    structural.isWeakSet(() => {}),
-    false,
-  );
-  t.is(
-    structural.isWeakSet(function () {}),
-    false,
-  );
-  t.is(structural.isWeakSet(class C {}), false);
-  t.is(structural.isWeakSet(parseInt), false);
-  t.is(structural.isWeakSet(null), false);
-  t.is(structural.isWeakSet(undefined), false);
-  t.is(structural.isWeakSet('str'), false);
-  t.is(structural.isWeakSet(42), false);
-  t.is(structural.isWeakSet([]), false);
-  t.is(structural.isWeakSet(Symbol('symbol')), false);
+  t.throws(() => structural.isWeakSet({}));
+  t.throws(() => structural.isWeakSet(new (class C {})()));
+  t.throws(() => structural.isWeakSet(new Map()));
+  t.throws(() => structural.isWeakSet(new Set()));
+  t.throws(() => structural.isWeakSet(new WeakMap()));
+  t.notThrows(() => structural.isWeakSet(new WeakSet()));
+  t.throws(() => structural.isWeakSet(new Date()));
+  t.throws(() => structural.isWeakSet(() => {}));
+  t.throws(() => structural.isWeakSet(function () {}));
+  t.throws(() => structural.isWeakSet(class C {}));
+  t.throws(() => structural.isWeakSet(parseInt));
+  t.throws(() => structural.isWeakSet(null));
+  t.throws(() => structural.isWeakSet(undefined));
+  t.throws(() => structural.isWeakSet('str'));
+  t.throws(() => structural.isWeakSet(42));
+  t.throws(() => structural.isWeakSet([]));
+  t.throws(() => structural.isWeakSet(Symbol('symbol')));
 });
 
 test('isDate', (t) => {
-  t.is(structural.isDate({}), false);
-  t.is(structural.isDate(new (class C {})()), false);
-  t.is(structural.isDate(new Map()), false);
-  t.is(structural.isDate(new Set()), false);
-  t.is(structural.isDate(new WeakMap()), false);
-  t.is(structural.isDate(new WeakSet()), false);
-  t.is(structural.isDate(new Date()), true);
-  t.is(
-    structural.isDate(() => {}),
-    false,
-  );
-  t.is(
-    structural.isDate(function () {}),
-    false,
-  );
-  t.is(structural.isDate(class C {}), false);
-  t.is(structural.isDate(parseInt), false);
-  t.is(structural.isDate(null), false);
-  t.is(structural.isDate(undefined), false);
-  t.is(structural.isDate('str'), false);
-  t.is(structural.isDate(42), false);
-  t.is(structural.isDate([]), false);
-  t.is(structural.isDate(Symbol('symbol')), false);
+  t.throws(() => structural.isDate({}));
+  t.throws(() => structural.isDate(new (class C {})()));
+  t.throws(() => structural.isDate(new Map()));
+  t.throws(() => structural.isDate(new Set()));
+  t.throws(() => structural.isDate(new WeakMap()));
+  t.throws(() => structural.isDate(new WeakSet()));
+  t.notThrows(() => structural.isDate(new Date()));
+  t.throws(() => structural.isDate(() => {}));
+  t.throws(() => structural.isDate(function () {}));
+  t.throws(() => structural.isDate(class C {}));
+  t.throws(() => structural.isDate(parseInt));
+  t.throws(() => structural.isDate(null));
+  t.throws(() => structural.isDate(undefined));
+  t.throws(() => structural.isDate('str'));
+  t.throws(() => structural.isDate(42));
+  t.throws(() => structural.isDate([]));
+  t.throws(() => structural.isDate(Symbol('symbol')));
 });
